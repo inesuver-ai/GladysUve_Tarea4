@@ -1,0 +1,29 @@
+digraph Persistencia {
+  rankdir=LR;
+  graph [fontname="Helvetica", fontsize=12, labelloc=t, label="Persistencia en CSV (paquete persistencia)", nodesep=0.4, ranksep=0.6, pad=0.3];
+  node  [shape=box, style="rounded,filled", fillcolor="#EEF3FB", fontname="Helvetica", fontsize=10];
+  edge  [fontname="Helvetica", fontsize=9];
+
+  Lector   [label="«interface»\nLectorContenido\n+ cargar()"];
+  Escritor [label="«interface»\nEscritorContenido\n+ guardar(List)"];
+  Repo     [label="«interface»\nRepositorioContenido"];
+  RepoCsv  [label="RepositorioCsv\n(escribe en archivo temporal\ny luego reemplaza el original)"];
+  RepoEx   [label="RepositorioException", fillcolor="#FDEEEE"];
+  Formato  [label="FormatoCsv\n(escapar, dividir, unir, aEntero)"];
+  Registro [label="RegistroConversores"];
+  ConvI    [label="«interface»\nConversorContenido\n+ getTipo() / crear(...)\n+ aCamposEspecificos(...)"];
+  ConvB    [label="ConversorBase<T>"];
+  Convs    [label="ConversorPelicula · ConversorSerieDeTV\nConversorDocumental · ConversorPodcast\nConversorProgramaDeRadio"];
+  Modelo   [label="ContenidoAudiovisual\n(paquete modelo)", fillcolor="#EAF6EA"];
+
+  Repo -> Lector   [arrowhead=empty];
+  Repo -> Escritor [arrowhead=empty];
+  RepoCsv -> Repo  [arrowhead=empty, style=dashed];
+  RepoCsv -> Registro [label="busca conversor"];
+  RepoCsv -> Formato;
+  RepoCsv -> RepoEx [label="lanza"];
+  Registro -> ConvI [label="0..*", arrowtail=odiamond, arrowhead=none, dir=back];
+  ConvB -> ConvI [arrowhead=empty, style=dashed];
+  Convs -> ConvB [arrowhead=empty];
+  Convs -> Modelo [label="convierte"];
+}

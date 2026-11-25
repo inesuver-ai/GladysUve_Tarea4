@@ -1,0 +1,46 @@
+digraph MVC {
+  rankdir=LR;
+  graph [fontname="Helvetica", fontsize=12, labelloc=t, label="Arquitectura MVC", nodesep=0.4, ranksep=0.65, pad=0.3, newrank=true];
+  node  [shape=box, style="rounded,filled", fillcolor="white", fontname="Helvetica", fontsize=10];
+  edge  [fontname="Helvetica", fontsize=9];
+
+  Main [label="MainAudiovisual\n(crea las piezas e inyecta dependencias)", fillcolor="#F0F0F0"];
+
+  subgraph cluster_ctrl {
+    label="CONTROLADOR (paquete controlador)"; style="rounded,filled"; fillcolor="#FFF7E0"; color="#C9A24A";
+    Controlador  [label="ControladorContenido\n+ iniciar() / ejecutar(AccionMenu)\n+ listar / agregar / buscar / eliminar\n+ agregarActor / agregarTemporada / agregarInvestigador\n+ guardarContenidos / cargarContenidos"];
+    AccionMenu   [label="«enum»\nAccionMenu"];
+    FabricaC     [label="«interface»\nFabricaContenido"];
+    FabricasC    [label="FabricasContenido\n(5 fábricas por defecto)"];
+  }
+
+  subgraph cluster_vista {
+    label="VISTA (paquete vista)"; style="rounded,filled"; fillcolor="#FDEEEE"; color="#C97A7A";
+    Vista        [label="«interface»\nVista\n+ mostrarMensaje / mostrarError\n+ mostrarContenidos(List)\n+ elegirOpcion / leerTexto / leerEntero"];
+    VistaConsola [label="VistaConsola\n(entrada y salida por constructor)"];
+    EntradaFin   [label="EntradaFinalizadaException"];
+  }
+
+  subgraph cluster_modelo {
+    label="MODELO (paquete modelo)"; style="rounded,filled"; fillcolor="#EAF6EA"; color="#6AA86A";
+    Catalogo     [label="CatalogoContenido"];
+    Contenido    [label="ContenidoAudiovisual y subclases\n+ Actor, Temporada, Investigador"];
+  }
+
+  Repo [label="«interface»\nRepositorioContenido\n(paquete persistencia)", fillcolor="#EEF3FB"];
+
+  Main -> Controlador [label="inyecta", style=dashed];
+
+  Controlador -> Vista        [label="usa"];
+  Controlador -> Catalogo     [label="usa"];
+  Controlador -> Repo         [label="usa"];
+  Controlador -> FabricaC     [label="usa"];
+  Controlador -> AccionMenu   [label="usa"];
+  FabricasC   -> FabricaC     [arrowhead=empty, style=dashed];
+  FabricasC   -> Contenido    [label="crea"];
+
+  VistaConsola -> Vista       [arrowhead=empty, style=dashed];
+  VistaConsola -> EntradaFin  [label="lanza"];
+
+  Catalogo -> Contenido       [label="0..*", arrowtail=odiamond, arrowhead=none, dir=back];
+}

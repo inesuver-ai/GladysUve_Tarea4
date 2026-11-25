@@ -1,0 +1,129 @@
+digraph Modelo {
+  rankdir=BT;
+  graph [fontname="Helvetica", fontsize=12, labelloc=t, label="Diagrama de clases - Modelo (paquete modelo)", nodesep=0.5, ranksep=0.8, pad=0.3];
+  node  [shape=plaintext, fontname="Helvetica", fontsize=10];
+  edge  [fontname="Helvetica", fontsize=9];
+
+  ContenidoAudiovisual [label=<
+    <table border="1" cellborder="0" cellspacing="0" cellpadding="3" bgcolor="#EEF3FB">
+      <tr><td><i>&lt;&lt;abstract&gt;&gt;</i><br/><b><i>ContenidoAudiovisual</i></b></td></tr>
+      <hr/>
+      <tr><td align="left">- ultimoId: int {static}<br align="left"/>- id: int {final}<br align="left"/>- titulo: String<br align="left"/>- duracionEnMinutos: int<br align="left"/>- genero: String<br align="left"/></td></tr>
+      <hr/>
+      <tr><td align="left">+ getId(): int<br align="left"/>+ getTitulo() / setTitulo(String)<br align="left"/>+ getDuracionEnMinutos() / set...<br align="left"/>+ getGenero() / setGenero(String)<br align="left"/>+ obtenerDetalles(): String {final}<br align="left"/>+ getNombreTipo(): String {abstract}<br align="left"/># detallesEspecificos(): List&lt;String&gt; {abstract}<br align="left"/># getEtiquetaDuracion(): String<br align="left"/></td></tr>
+    </table>>];
+
+  Compartible [label=<
+    <table border="1" cellborder="0" cellspacing="0" cellpadding="3" bgcolor="#FFF7E0">
+      <tr><td><i>&lt;&lt;interface&gt;&gt;</i><br/><b>Compartible</b></td></tr>
+      <hr/>
+      <tr><td align="left">+ compartir(): String<br align="left"/></td></tr>
+    </table>>];
+
+  Transmisible [label=<
+    <table border="1" cellborder="0" cellspacing="0" cellpadding="3" bgcolor="#FFF7E0">
+      <tr><td><i>&lt;&lt;interface&gt;&gt;</i><br/><b>Transmisible</b></td></tr>
+      <hr/>
+      <tr><td align="left">+ emitirEnVivo(): String<br align="left"/></td></tr>
+    </table>>];
+
+  Pelicula [label=<
+    <table border="1" cellborder="0" cellspacing="0" cellpadding="3">
+      <tr><td><b>Pelicula</b></td></tr>
+      <hr/>
+      <tr><td align="left">- director: String<br align="left"/>- actores: List&lt;Actor&gt;<br align="left"/></td></tr>
+      <hr/>
+      <tr><td align="left">+ agregarActor(Actor)<br align="left"/>+ getActores(): List&lt;Actor&gt;<br align="left"/>+ getDirector() / setDirector(String)<br align="left"/></td></tr>
+    </table>>];
+
+  SerieDeTV [label=<
+    <table border="1" cellborder="0" cellspacing="0" cellpadding="3">
+      <tr><td><b>SerieDeTV</b></td></tr>
+      <hr/>
+      <tr><td align="left">- productor: String<br align="left"/>- temporadas: List&lt;Temporada&gt;<br align="left"/></td></tr>
+      <hr/>
+      <tr><td align="left">+ agregarTemporada(int, int)<br align="left"/>+ getTemporadas(): List&lt;Temporada&gt;<br align="left"/>+ getTotalEpisodios(): int<br align="left"/>+ getProductor() / setProductor(String)<br align="left"/></td></tr>
+    </table>>];
+
+  Documental [label=<
+    <table border="1" cellborder="0" cellspacing="0" cellpadding="3">
+      <tr><td><b>Documental</b></td></tr>
+      <hr/>
+      <tr><td align="left">- tema: String<br align="left"/>- investigadores: List&lt;Investigador&gt;<br align="left"/></td></tr>
+      <hr/>
+      <tr><td align="left">+ agregarInvestigador(Investigador)<br align="left"/>+ getInvestigadores(): List&lt;Investigador&gt;<br align="left"/>+ getTema() / setTema(String)<br align="left"/></td></tr>
+    </table>>];
+
+  Podcast [label=<
+    <table border="1" cellborder="0" cellspacing="0" cellpadding="3">
+      <tr><td><b>Podcast</b></td></tr>
+      <hr/>
+      <tr><td align="left">- temaPrincipal: String<br align="left"/>- numeroDeEpisodio: int<br align="left"/>- plataforma: String<br align="left"/></td></tr>
+      <hr/>
+      <tr><td align="left">+ compartir(): String<br align="left"/>+ getters / setters<br align="left"/></td></tr>
+    </table>>];
+
+  ProgramaDeRadio [label=<
+    <table border="1" cellborder="0" cellspacing="0" cellpadding="3">
+      <tr><td><b>ProgramaDeRadio</b></td></tr>
+      <hr/>
+      <tr><td align="left">- locutor: String<br align="left"/>- frecuencia: String<br align="left"/>- enVivo: boolean<br align="left"/></td></tr>
+      <hr/>
+      <tr><td align="left">+ emitirEnVivo(): String<br align="left"/>+ isEnVivo() / setEnVivo(boolean)<br align="left"/>+ getters / setters<br align="left"/></td></tr>
+    </table>>];
+
+  Actor [label=<
+    <table border="1" cellborder="0" cellspacing="0" cellpadding="3">
+      <tr><td><b>Actor</b></td></tr>
+      <hr/>
+      <tr><td align="left">- nombre: String<br align="left"/>- nacionalidad: String<br align="left"/>- anioNacimiento: int<br align="left"/></td></tr>
+      <hr/>
+      <tr><td align="left">+ getNombre() / getNacionalidad()<br align="left"/>+ getAnioNacimiento(): int<br align="left"/></td></tr>
+    </table>>];
+
+  Temporada [label=<
+    <table border="1" cellborder="0" cellspacing="0" cellpadding="3">
+      <tr><td><b>Temporada</b></td></tr>
+      <hr/>
+      <tr><td align="left">- numero: int<br align="left"/>- episodios: int<br align="left"/></td></tr>
+      <hr/>
+      <tr><td align="left">+ getNumero(): int<br align="left"/>+ getEpisodios(): int<br align="left"/></td></tr>
+    </table>>];
+
+  Investigador [label=<
+    <table border="1" cellborder="0" cellspacing="0" cellpadding="3">
+      <tr><td><b>Investigador</b></td></tr>
+      <hr/>
+      <tr><td align="left">- nombre: String<br align="left"/>- especialidad: String<br align="left"/>- institucion: String<br align="left"/></td></tr>
+      <hr/>
+      <tr><td align="left">+ getNombre() / getEspecialidad()<br align="left"/>+ getInstitucion(): String<br align="left"/></td></tr>
+    </table>>];
+
+  CatalogoContenido [label=<
+    <table border="1" cellborder="0" cellspacing="0" cellpadding="3" bgcolor="#EAF6EA">
+      <tr><td><b>CatalogoContenido</b></td></tr>
+      <hr/>
+      <tr><td align="left">- contenidos: List&lt;ContenidoAudiovisual&gt;<br align="left"/></td></tr>
+      <hr/>
+      <tr><td align="left">+ agregar(ContenidoAudiovisual)<br align="left"/>+ eliminarPorId(int): boolean<br align="left"/>+ buscarPorId(int): Optional<br align="left"/>+ buscarPorTitulo(String): List<br align="left"/>+ reemplazarContenidos(Collection)<br align="left"/>+ listar(): List / cantidad(): int<br align="left"/></td></tr>
+    </table>>];
+
+  // Herencia (flecha triangular vacía)
+  Pelicula        -> ContenidoAudiovisual [arrowhead=empty];
+  SerieDeTV       -> ContenidoAudiovisual [arrowhead=empty];
+  Documental      -> ContenidoAudiovisual [arrowhead=empty];
+  Podcast         -> ContenidoAudiovisual [arrowhead=empty];
+  ProgramaDeRadio -> ContenidoAudiovisual [arrowhead=empty];
+
+  // Realización de interfaces (punteada)
+  Podcast         -> Compartible [arrowhead=empty, style=dashed];
+  ProgramaDeRadio -> Transmisible [arrowhead=empty, style=dashed];
+
+  // Composición (rombo lleno del lado del todo)
+  Actor        -> Pelicula   [arrowhead=diamond, headlabel="  1", taillabel="0..* ", dir=forward];
+  Temporada    -> SerieDeTV  [arrowhead=diamond, headlabel="  1", taillabel="0..* "];
+  Investigador -> Documental [arrowhead=diamond, headlabel="  1", taillabel="0..* "];
+
+  // Agregación del catálogo
+  ContenidoAudiovisual -> CatalogoContenido [arrowhead=odiamond, headlabel="  1", taillabel="0..* "];
+}

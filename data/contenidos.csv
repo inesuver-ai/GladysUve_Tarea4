@@ -1,0 +1,11 @@
+# TIPO;titulo;duracionEnMinutos;genero;campos específicos del tipo
+PELICULA;El Origen;148;Ciencia Ficción;Christopher Nolan;Leonardo DiCaprio:Estadounidense:1974|Joseph Gordon-Levitt:Estadounidense:1981
+PELICULA;Avatar;125;Acción;James Cameron;Sam Worthington:Australiana:1976|Zoe Saldaña:Estadounidense:1978
+SERIE;Stranger Things;50;Ciencia Ficción;Duffer Bros;1:8|2:9|3:8
+SERIE;Game of Thrones;60;Fantasía;HBO;1:10|2:10|3:10
+DOCUMENTAL;El Cambio Climático;60;Educativo;Medio Ambiente;María López:Climatología:Universidad Nacional|Carlos Ruiz:Ecología:Instituto de Ciencias
+DOCUMENTAL;Cosmos;45;Divulgación;Astronomía;Carl Sagan:Astronomía:Universidad de Cornell
+PODCAST;Mentes Curiosas;35;Educativo;Los secretos del universo;47;Spotify
+PODCAST;La Ciencia de Hoy;30;Educativo;Universo;15;Spotify
+RADIO;La Hora Cultural;60;Cultura;Ana Vásquez;92.5 FM;false
+RADIO;Noticias al Día;20;Informativo;Carlos Pérez;98.5 FM;true
